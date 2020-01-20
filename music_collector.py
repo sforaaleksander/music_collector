@@ -1,10 +1,11 @@
-### MUSIC COLLECTOR
+# MUSIC COLLECTOR
+
 
 def data_import(file_name="text_albums_data.txt"):
     with open(file_name, "r") as f:
         contents = f.readlines()
         lst = [x.strip().split(",") for x in contents]
-        #print(lst)
+        # print(lst)
         return lst
 
 
@@ -51,12 +52,107 @@ def search_by_genre():
             genre_selection.append(albums_list[i])
     print(genre_selection)
 
+
 def exit_or_menu():
     pass
+
+
+# convert time to seconds, create copied list of albums
+# with appended element 'time_in_seconds' to make sorting easy
+
+def time_convert():
+    albums_list = data_import()
+    mod_time_albums_lst = albums_list
+    for i in range(len(mod_time_albums_lst)):
+        time_string = mod_time_albums_lst[i][-1]
+        time_lst = time_string.split(":")
+        time_in_seconds = int(time_lst[0]) * 60 + int(time_lst[1])        
+        mod_time_albums_lst[i].append(time_in_seconds)
+    return mod_time_albums_lst
+
+
+def find_shortest():
+    mod_time_albums_lst = time_convert()
+    lst = sorted(mod_time_albums_lst, key=lambda x: x[-1])[0]
+    lst = [str(x) for x in lst]
+    string = ", ".join(lst[:-1:])
+    return string
+
+
+def find_longest():
+    mod_time_albums_lst = time_convert()
+    lst = sorted(mod_time_albums_lst, key=lambda x: x[-1], reverse=True)[0]
+    lst = [str(x) for x in lst]
+    string = ", ".join(lst[:-1:])
+    return string
+
+
+def find_oldest():
+    albums_list = data_import()
+    lst = sorted(albums_list, key=lambda x: int(x[-3]))[0]
+    lst = [str(x) for x in lst]
+    string = ", ".join(lst)
+    return string
+
+
+def find_youngest():
+    albums_list = data_import()
+    lst = sorted(albums_list, key=lambda x: int(x[-3]), reverse=True)[0]
+    lst = [str(x) for x in lst]
+    string = ", ".join(lst)
+    return string
+
+
+def set_artists():
+    albums_list = data_import()
+    artists = set()
+    for e in albums_list:
+        set.add(e[0])
+    return artists
+
+
+def set_genres():
+    albums_list = data_import()
+    generes = set()
+    for e in albums_list:
+        set.add(e[-2])
+    return generes
+
+
+def count_time():
+    total_time = 0
+    time_string = ""
+    mod_time_albums_lst = time_convert()
+    for e in mod_time_albums_lst:
+        total_time += e[-1]
+    if total_time > 3600:
+        hours = total_time / 3600
+        minutes = total_time  
+        seconds = total_time % 3600
+    return total_time
     
 
 
+def show_statistics():
+    albums_list = data_import()
+    album_count = 0
+    total_time = 0
+    total_genres = 0
+    total_artists = 0
+    longest = find_longest()
+    shortest = find_shortest()
+    oldest = find_oldest()
+    youngest = find_youngest()
+    
+
+
+
+
+main()
 #data_import()
 #display_menu()
-search_by_genre()
-
+#search_by_genre()
+time_convert()
+print("___________________")
+show_statistics()
+print(count_time())

@@ -65,6 +65,11 @@ def search_by_artist():
     print(artist_selection)
 
 
+def search_by_time_range():
+    albums_list = data_import()
+    print(albums_list)
+    
+    
 def exit_or_menu():
     pass
 
@@ -72,4 +77,5 @@ def exit_or_menu():
 # data_import()
 # display_menu()
 # search_by_genre()
-search_by_artist()
+# search_by_artist()
+search_by_time_range()

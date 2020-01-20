@@ -52,12 +52,20 @@ def search_by_genre():
     print(genre_selection)
 
 
-def exit_or_menu():
-    pass
+<<<<<<< HEAD
+=======
+def search_by_artist():
+    albums_list = data_import()
+    artists = [x[0] for x in albums_list]
+    artists = set(artists)
+    print(f"Your library includes following artists: {', '.join(artists)}")
+    user_artist = input("Type an artist you want to search for: ")
+    artist_selection = []
+    for i in range(len(albums_list)):
+        if albums_list[i][0] == user_artist:
+            artist_selection.append(albums_list[i])
+    print(artist_selection)
 
-
-# convert time to seconds, create copied list of albums
-# with appended element 'time_in_seconds' to make sorting easy
 
 def time_convert():
     albums_list = data_import()
@@ -68,6 +76,43 @@ def time_convert():
         time_in_seconds = int(time_lst[0]) * 60 + int(time_lst[1])        
         mod_time_albums_lst[i].append(time_in_seconds)
     return mod_time_albums_lst
+
+
+def search_by_time_range():
+    mod_time_albums = time_convert()
+    try:
+        time_input = int(input("Enter time range in minutes: "))
+        time_in_sec = time_input * 60
+        for e in mod_time_albums:
+            if time_in_sec >= e[5]:
+                print(" - ".join(e[:5]))
+    except ValueError:
+        print("You have to enter only intiger type.")
+        search_by_time_range()
+        
+
+# print(time_convert())
+search_by_time_range()
+
+
+def exit_or_menu():
+    pass
+
+
+# data_import()
+# display_menu()
+# search_by_genre()
+# search_by_artist()
+# search_by_time_range()
+
+
+>>>>>>> 1987d31f8b2e7560a3ccbfe24927f16dc6004293
+def exit_or_menu():
+    pass
+
+
+# convert time to seconds, create copied list of albums
+# with appended element 'time_in_seconds' to make sorting easy
 
 
 def find_shortest():
@@ -129,7 +174,6 @@ def count_time():
         minutes = total_time  
         seconds = total_time % 3600
     return total_time
-    
 
 
 def show_statistics():
@@ -141,12 +185,10 @@ def show_statistics():
     longest = find_longest()
     shortest = find_shortest()
     oldest = find_oldest()
-    youngest = find_youngest()
-    
+    youngest = find_youngest()  
 
 
-
-
+<<<<<<< HEAD
 main()
 #data_import()
 #display_menu()
@@ -155,3 +197,13 @@ time_convert()
 print("___________________")
 show_statistics()
 print(count_time())
+=======
+# main()
+# data_import()
+# display_menu()
+# search_by_genre()
+# print(time_convert())
+# print("___________________")
+# show_statistics()
+# print(count_time())
+>>>>>>> 1987d31f8b2e7560a3ccbfe24927f16dc6004293

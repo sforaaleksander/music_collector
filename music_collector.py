@@ -13,12 +13,11 @@ def display_menu():
     operations = {"View all albums:": 1, "Search by genre:": 2, "Search by artist:": 3, 
                   "Search by time range:": 4, "Show the shortest album:": 5, "Show the longest album:": 6,
                   "Show your library statistics:": 7}
-    length = 70
     len_deli = 67
     sep = "|"
     dash_line = ("|" + "-" * (len_deli+2) + "|")
     print(dash_line)
-    #print(f"{sep:<{length}}{title:^{length}}{sep:>{length}}")
+    # print(f"{sep:<{length}}{title:^{length}}{sep:>{length}}")
     print(sep, "MUSIC COLLECTOR".center(len_deli), sep)
     print(dash_line)
     print("|", "Select operation by typing the corresponding number".center(len_deli), "|")

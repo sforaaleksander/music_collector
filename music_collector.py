@@ -1,10 +1,11 @@
-### MUSIC COLLECTOR
+# MUSIC COLLECTOR
+
 
 def data_import(file_name="text_albums_data.txt"):
     with open(file_name, "r") as f:
         contents = f.readlines()
         lst = [x.strip().split(",") for x in contents]
-        #print(lst)
+        # print(lst)
         return lst
 
 
@@ -12,12 +13,11 @@ def display_menu():
     operations = {"View all albums:": 1, "Search by genre:": 2, "Search by artist:": 3, 
                   "Search by time range:": 4, "Show the shortest album:": 5, "Show the longest album:": 6,
                   "Show your library statistics:": 7}
-    length = 70
     len_deli = 67
     sep = "|"
     dash_line = ("|" + "-" * (len_deli+2) + "|")
     print(dash_line)
-    #print(f"{sep:<{length}}{title:^{length}}{sep:>{length}}")
+    # print(f"{sep:<{length}}{title:^{length}}{sep:>{length}}")
     print(sep, "MUSIC COLLECTOR".center(len_deli), sep)
     print(dash_line)
     print("|", "Select operation by typing the corresponding number".center(len_deli), "|")
@@ -51,12 +51,25 @@ def search_by_genre():
             genre_selection.append(albums_list[i])
     print(genre_selection)
 
+
+def search_by_artist():
+    albums_list = data_import()
+    artists = [x[0] for x in albums_list]
+    artists = set(artists)
+    print(f"Your library includes following artists: {', '.join(artists)}")
+    user_artist = input("Type an artist you want to search for: ")
+    artist_selection = []
+    for i in range(len(albums_list)):
+        if albums_list[i][0] == user_artist:
+            artist_selection.append(albums_list[i])
+    print(artist_selection)
+
+
 def exit_or_menu():
     pass
-    
 
 
-#data_import()
-#display_menu()
-search_by_genre()
-
+# data_import()
+# display_menu()
+# search_by_genre()
+search_by_artist()

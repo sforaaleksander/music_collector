@@ -20,16 +20,25 @@ def menu_choice():
         return operations[int(user_choice)]()
 
 
+def back_to_menu():
+    back = input().lower()
+    while back != "x":
+        back = input().lower()
+    main()
+
+
 def main():
     display_menu(show_statistics())
     display_choice(menu_choice())
-    # show_all()
+    back_to_menu()
 
 
 def show_all():
     albums_list = data_import()
+    result_lst = []
     for sublist in albums_list:
-        print(" - ".join(sublist))
+        result_lst.append(sublist)
+    return result_lst
 
 
 def search_by_genre():
@@ -170,8 +179,9 @@ def show_extended_statistics():
     shortest = find_shortest()
     oldest = find_oldest()
     youngest = find_youngest()
-    result_lst = [album_count, total_time, total_artists, total_genres, longest, shortest, oldest, youngest]
-    result_lst = [str(x) for x in result_lst]
+    digit_stats = [album_count, total_time, total_artists, total_genres]
+    result_lst = [digit_stats, longest, shortest, oldest, youngest]
+    # result_lst = [str(x) for x in result_lst]
     return result_lst
 
 

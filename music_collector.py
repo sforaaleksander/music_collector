@@ -85,7 +85,7 @@ def search_by_time_range():
             if time_in_sec >= e[5]:
                 print(" - ".join(e[:5]))
     except ValueError:
-        print("You have to enter only intiger type.")
+        print("You have to enter only intiger type.")d
         search_by_time_range()
         
 

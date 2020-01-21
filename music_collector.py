@@ -41,8 +41,7 @@ def show_all(data):
 
 def search_by_genre():
     albums_list = data_import()
-    genres = [x[-2] for x in albums_list]
-    genres = set(genres)
+    genres = set_genres()
     print(f"Your library includes following genres: {', '.join(genres)}")
     user_genre = input("Type in the genre you want to search for: ")
     genre_selection = []
@@ -54,8 +53,7 @@ def search_by_genre():
 
 def search_by_artist():
     albums_list = data_import()
-    artists = [x[0] for x in albums_list]
-    artists = set(artists)
+    artists = set_artists()
     print(f"Your library includes following artists: {', '.join(artists)}")
     user_artist = input("Type an artist you want to search for: ")
     artist_selection = []
@@ -193,3 +191,22 @@ def show_statistics():
 # print("___________________")
 # show_statistics()
 # print(count_time())
+
+
+
+# BETA FUNCTION FOR ABSTRACTED SEARCHING OF WHAT (ARTIST/GENRE)
+
+
+# def search_by_(what):
+#    albums_list = data_import()
+#    if what==artist:
+#       set_of_what = set_artists()
+#    if what == genre:
+#       set_of_what = set_genre()
+#    print(f"Your library includes following {what}: {', '.join(set_of_what)}")
+#    user_what = input("fType {what} you want to search for: ")
+#    what_selection = []
+#    for i in range(len(albums_list)):
+#        if albums_list[i][0] == user_artist:
+#            what_selection.append(albums_list[i])
+#    print(what_selection)

@@ -1,5 +1,6 @@
 from display import display_menu
 from display import display_choice
+from display import display_stats
 
 # MUSIC COLLECTOR
 
@@ -27,9 +28,18 @@ def back_to_menu():
     main()
 
 
+def chceck_choice_result(choice_result):
+    if choice_result[0] == "statistics":
+        display_stats(choice_result)
+    else:
+        display_choice(choice_result)
+
+
 def main():
+
     display_menu(show_statistics())
-    display_choice(menu_choice())
+    chceck_choice_result(menu_choice())
+    
     back_to_menu()
 
 
@@ -179,14 +189,18 @@ def show_extended_statistics():
     shortest = find_shortest()
     oldest = find_oldest()
     youngest = find_youngest()
-    digit_stats = [album_count, total_time, total_artists, total_genres]
-    result_lst = [digit_stats, longest, shortest, oldest, youngest]
+    # digit_stats = [album_count, total_time, total_artists, total_genres]
+    result_lst = ["statistics", album_count, total_time, total_artists, total_genres, longest, shortest, oldest, youngest]
     # result_lst = [str(x) for x in result_lst]
     return result_lst
 
 
-main()
+# a, b = show_extended_statistics()
 
+
+# display_stats(a, b)
+main()
+# print(show_extended_statistics())
 
 # def find(what):
 #     if what == "shortest":

@@ -46,14 +46,42 @@ def display_choice(choice):
 
 
 # TO DO:
-# def display_stats(stats):
-#     os.system("clear")
-#     # stats = [[x.strip() for x in l] for l in stats]
-#     dash = "\u2592" + '\u2592' * 104 + "\u2592"
-#     print(dash)
-#     print('\u2592{:^25s}\u2592{:^35s}\u2592{:^10s}\u2592{:^20s}\u2592{:^10s}\u2592'.format("Artist", "Album name",
-#           "Year", "Genre", "Time"))
-#     print(dash)
-#     for i in range(len(stats)):
-#         print('\u2592{:<25s}\u2592{:<35s}\u2592{:^10s}\u2592{:^20s}\u2592{:^10s}\u2592'.format(stats[i][0],
-#               stats[i][1], stats[i][2], stats[i][3], stats[i][4]))
+def display_stats(choice_result):
+    os.system("clear")
+    # ext_stats = [[x.strip() for x in l] for l in ext_stats]
+    digit_stats = choice_result[1:5]
+    longest = choice_result[5]
+    shortest = choice_result[6]
+    oldest = choice_result[7]
+    youngest = choice_result[8]
+    len_deli = 102
+    bullet = "\u2023"
+    sep = "\u2592"
+    dash = "\u2592" + '\u2592' * 104 + "\u2592"
+    print(dash)
+    print(sep, "\u266a LIBRARY STATISTICS \u266a".center(len_deli), sep)
+    print(dash)
+    digit_list = ["Album count: ", "total time: ", "all artists: ", "all grenres: "]
+    digit_string = ""
+    for i in range(len(digit_list)):
+        digit_string += "\u2592 " + digit_list[i] + str(digit_stats[i]) + " \u2592"
+    print("\u2592", digit_string.center(102), "\u2592")
+    print(dash)
+    print(f"{sep} {'The longest album(s):':<{53}}{sep:>{51}}")
+    for i in longest:
+        print(f"{sep} {bullet} {' - '.join(i):<{53}}{sep:>{49}}")
+    print(f"{sep} {' '.center(103)}{sep}")
+    print(f"{sep} {'The shortest album(s):':<{53}}{sep:>{51}}")
+    for i in shortest:
+        print(f"{sep} {bullet} {' - '.join(i):<{53}}{sep:>{49}}")
+    print(f"{sep} {' '.center(103)}{sep}")
+    print(f"{sep} {'The oldest album(s):':<{53}}{sep:>{51}}")
+    for i in oldest:
+        print(f"{sep} {bullet} {' - '.join(i):<{53}}{sep:>{49}}")
+    print(f"{sep} {' '.center(103)}{sep}")
+    print(f"{sep} {'The youngest album(s):':<{53}}{sep:>{51}}")
+    for i in youngest:
+        print(f"{sep} {bullet} {' - '.join(i):<{53}}{sep:>{49}}")
+    print(dash)
+    
+  

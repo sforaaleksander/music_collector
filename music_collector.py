@@ -12,12 +12,16 @@ def data_import(file_name="text_albums_data.txt"):
 
 
 def menu_choice():
-    user_choice = input()
-    operations = {1: show_all, 2: search_by_genre, 3: search_by_artist,
-                  4: search_by_time_range, 5: find_shortest, 6: find_longest, 7: show_extended_statistics,
-                  8: exit}
-    if int(user_choice) in operations.keys():
-        return operations[int(user_choice)]()
+    try:
+        user_choice = int(input())
+        operations = {1: show_all, 2: search_by_genre, 3: search_by_artist,
+                      4: search_by_time_range, 5: find_shortest, 6: find_longest,
+                      7: show_extended_statistics, 8: exit}
+        if int(user_choice) in operations.keys():
+            return operations[int(user_choice)]()
+    except ValueError:
+        print("Value error, type in an integer.")
+        menu_choice()
 
 
 def back_to_menu():
@@ -50,7 +54,9 @@ def search_by_genre():
     for i in range(len(albums_list)):
         if (albums_list[i][-2]).lower() == user_genre:
             genre_selection.append(albums_list[i])
-    return genre_selection
+    if len(genre_selection) > 0:
+        return genre_selection
+    return ["No data matching your criteria."]
 
 
 def search_by_artist():
@@ -62,7 +68,9 @@ def search_by_artist():
     for i in range(len(albums_list)):
         if (albums_list[i][0]).lower() == user_artist:
             artist_selection.append(albums_list[i])
-    return artist_selection
+    if len(artist_selection) > 0:
+        return artist_selection
+    return ["No data matching your criteria."]
 
 
 def time_convert():
@@ -181,7 +189,6 @@ def show_extended_statistics():
     youngest = find_youngest()
     digit_stats = [album_count, total_time, total_artists, total_genres]
     result_lst = [digit_stats, longest, shortest, oldest, youngest]
-    # result_lst = [str(x) for x in result_lst]
     return result_lst
 
 

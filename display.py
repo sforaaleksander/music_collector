@@ -84,4 +84,3 @@ def display_stats(choice_result):
         print(f"{sep} {bullet} {' - '.join(i):<{53}}{sep:>{49}}")
     print(dash)
     
-  

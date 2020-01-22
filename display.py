@@ -112,3 +112,19 @@ def display_middle_stage(set_of_some_things):
     print(dash_line)
     print("\u2592", "press 'x' to go back to menu".center(len_deli), "\u2592")
     print(dash_line)
+    
+
+def display_time_input():
+    os.system("clear")
+    len_deli = 102
+    sep = "\u2592"
+    dash_line = ("\u2592" + "\u2592" * (len_deli+2) + "\u2592")
+    print(dash_line)
+    print(sep, "\u266a MUSIC COLLECTOR \u266a".center(len_deli), sep)
+    print(dash_line)
+    print("\u2592", "Type in minimum value and enter, then max value and enter".center(len_deli), "\u2592")
+    print(dash_line)
+   # decor
+    print(dash_line)
+    print("\u2592", "press 'x' to go back to menu".center(len_deli), "\u2592")
+    print(dash_line)

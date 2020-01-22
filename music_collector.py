@@ -3,6 +3,7 @@ from display import display_choice
 from display import display_stats
 from display import display_no_data
 from display import display_middle_stage
+from display import display_time_input
 
 # MUSIC COLLECTOR
 
@@ -66,7 +67,7 @@ def search_by_genre():
     user_genre = input()
     genres_selection = []
     for i in range(len(albums_list)):
-        if (albums_list[i][-2]).lower() == user_genre:
+        if (albums_list[i][-2]).lower() == user_genre.lower():
             genres_selection.append(albums_list[i])
     if user_genre == "x" or user_genre == "X":
         main()
@@ -82,7 +83,7 @@ def search_by_artist():
     user_artist = input()
     artist_selection = []
     for i in range(len(albums_list)):
-        if (albums_list[i][0]).lower() == user_artist:
+        if (albums_list[i][0]).lower() == user_artist.lower():
             artist_selection.append(albums_list[i])
     if user_artist == "x" or user_artist == "X":
         main()
@@ -104,16 +105,19 @@ def time_convert():
 def search_by_time_range():
     albums_list = time_convert()
     result_lst = []
+    display_time_input()
     try:
-        time_input = int(input("Enter time range in minutes: "))
-        time_in_sec = time_input * 60
+        time_min = int(input()) * 60
+        time_max = int(input()) * 60
         for e in albums_list:
-            if time_in_sec >= e[5]:
+            if time_min <= e[5] <= time_max:
                 result_lst.append(e[:5])
     except ValueError:
         print("You have to enter only intiger type.")
         search_by_time_range()
-    return result_lst
+    if len(result_lst) > 0:
+        return result_lst
+    return ["no_data", "No data matching your criteria."]
 
 
 def check_for_equal_entries(source, match, i):

@@ -4,6 +4,7 @@ from display import display_stats
 from display import display_no_data
 from display import display_middle_stage
 from display import display_time_input
+from display import display_add_album
 
 # MUSIC COLLECTOR
 
@@ -15,16 +16,35 @@ def data_import(file_name="text_albums_data.txt"):
         return lst
 
 
+def update_data(file_name="text_albums_data.txt"):
+    artist = "Type an artist: "
+    album = "Type album's name: "
+    year = "Type the year: "
+    genre = "Type the genre: "
+    time = "Type album's length: "
+    lst = [artist, album, year, genre, time]
+    full_album_info = []
+    for i in range(len(lst)):
+        display_add_album(lst[i])
+        info = input()
+        full_album_info.append(info)
+    # full_album_info = [artist, album, year, genre, time]
+    with open(file_name, "a+") as f:
+        # f.write("\n")
+        f.write(",".join(full_album_info))
+    main()
+
+
 def menu_choice():
     user_choice = input()
     while not user_choice.isdigit():
         user_choice = input()
-    while int(user_choice) not in range(1, 9):
+    while int(user_choice) not in range(1, 10):
         user_choice = input()
     user_choice = int(user_choice)
     operations = {1: show_all, 2: search_by_genre, 3: search_by_artist,
                   4: search_by_time_range, 5: find_shortest, 6: find_longest,
-                  7: show_extended_statistics, 8: exit}
+                  7: show_extended_statistics, 8: update_data, 9: exit}
     return operations[int(user_choice)]()
 
 

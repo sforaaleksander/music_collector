@@ -66,7 +66,7 @@ def search_by_genre():
     user_genre = input()
     genres_selection = []
     for i in range(len(albums_list)):
-        if (albums_list[i][0]).lower() == user_genre:
+        if (albums_list[i][-2]).lower() == user_genre:
             genres_selection.append(albums_list[i])
     if user_genre == "x" or user_genre == "X":
         main()

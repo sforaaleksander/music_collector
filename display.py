@@ -5,7 +5,7 @@ def display_menu(stats):
     os.system("clear")
     operations = {"View all albums:": 1, "Search by genre:": 2, "Search by artist:": 3,
                   "Search by time range:": 4, "Show the shortest album:": 5, "Show the longest album:": 6,
-                  "Show your library statistics:": 7, "Add new album": 8,"Exit Music Collector": 9}
+                  "Show your library statistics:": 7, "Add new album": 8, "Exit Music Collector": 9}
     len_deli = 102
     sep = "\u2592"
     dash_line = ("\u2592" + "\u2592" * (len_deli+2) + "\u2592")

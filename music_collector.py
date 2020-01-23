@@ -28,10 +28,8 @@ def update_data(file_name="text_albums_data.txt"):
         display_add_album(lst[i])
         info = input()
         full_album_info.append(info)
-    # full_album_info = [artist, album, year, genre, time]
-    with open(file_name, "a+") as f:
-        # f.write("\n")
-        f.write(",".join(full_album_info))
+    with open(file_name, "a") as f:
+        f.write(",".join(full_album_info) + "\n")
     main()
 
 

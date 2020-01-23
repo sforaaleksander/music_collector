@@ -47,7 +47,10 @@ def validate_input(index):
             info = input()
     if index == 4:
         ls = info.split(":")
-        while not ls[0].isdigit() or not ls[1].isdigit() or len(ls) != 2:
+        while len(ls) != 2:
+            info = input()
+            ls = info.split(":")
+        while not ls[0].isdigit() or not ls[1].isdigit():
             info = input()
             ls = info.split(":")
     return info

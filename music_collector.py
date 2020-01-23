@@ -5,6 +5,8 @@ from display import display_no_data
 from display import display_middle_stage
 from display import display_time_input
 from display import display_add_album
+from display import display_edit_album
+from display import display_for_edit
 
 # MUSIC COLLECTOR
 
@@ -16,7 +18,7 @@ def data_import(file_name="text_albums_data.txt"):
         return lst
 
 
-def update_data(file_name="text_albums_data.txt"):
+def gather_user_info(for_what, album_to_edit=None):
     artist = "Type an artist: "
     album = "Type album's name: "
     year = "Type the year: "
@@ -24,14 +26,39 @@ def update_data(file_name="text_albums_data.txt"):
     time = "Type album's length: "
     lst = [artist, album, year, genre, time]
     full_album_info = []
-    for i in range(len(lst)):
-        display_add_album(lst[i])
-        info = input()
-        full_album_info.append(info)
-    # full_album_info = [artist, album, year, genre, time]
-    with open(file_name, "a+") as f:
-        # f.write("\n")
-        f.write(",".join(full_album_info) + "\n")
+    if for_what == "for_add":
+        for i in range(len(lst)):
+            display_add_album(lst[i])
+            info = input()
+            full_album_info.append(info)
+        return full_album_info
+    elif for_what == "for_edit":
+        for i in range(len(lst)):
+            display_edit_album(lst[i], album_to_edit)
+            info = input()
+            full_album_info.append(info)
+        return full_album_info
+
+
+def update_data(file_name="text_albums_data.txt"):
+    with open(file_name, "a") as f:
+        f.write(",".join(gather_user_info("for_add")) + "\n")
+    main()
+
+
+def edit_data(file_name="text_albums_data.txt"):
+    albums_list = data_import()
+    display_for_edit(show_all())
+    user_input = input()
+    while not user_input.isdigit():
+        user_input = input()
+    while int(user_input) not in range(len(show_all())+1):
+        user_input = input()
+    edited_entry = gather_user_info("for_edit", albums_list[int(user_input) - 1])
+    albums_list[int(user_input) - 1] = edited_entry
+    with open(file_name, "w") as f:
+        for e in albums_list:
+            f.write(",".join(e) + "\n")
     main()
 
 
@@ -39,12 +66,12 @@ def menu_choice():
     user_choice = input()
     while not user_choice.isdigit():
         user_choice = input()
-    while int(user_choice) not in range(1, 10):
+    while int(user_choice) not in range(1, 11):
         user_choice = input()
     user_choice = int(user_choice)
     operations = {1: show_all, 2: search_by_genre, 3: search_by_artist,
                   4: search_by_time_range, 5: find_shortest, 6: find_longest,
-                  7: show_extended_statistics, 8: update_data, 9: exit}
+                  7: show_extended_statistics, 8: update_data, 9: edit_data, 10: exit}
     return operations[int(user_choice)]()
 
 

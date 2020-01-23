@@ -1,3 +1,4 @@
+import random
 from display import display_menu
 from display import display_choice
 from display import display_stats
@@ -7,6 +8,7 @@ from display import display_time_input
 from display import display_add_album
 from display import display_edit_album
 from display import display_for_edit
+from display import display_recommendation
 
 # MUSIC COLLECTOR
 
@@ -87,6 +89,8 @@ def chceck_choice_result(choice_result):
         display_stats(choice_result)
     elif choice_result[0] == "no_data":
         display_no_data(choice_result)
+    elif choice_result[0] == "recommendation":
+        display_recommendation(choice_result)
     else:
         display_choice(choice_result)
 
@@ -95,7 +99,6 @@ def main():
 
     display_menu(show_statistics())
     chceck_choice_result(menu_choice())
-
     back_to_menu()
 
 
@@ -135,8 +138,24 @@ def search_by_artist():
     if user_artist == "x" or user_artist == "X":
         main()
     if len(artist_selection) > 0:
-        return artist_selection
+        list_of_suggestions = recommendation(user_artist.lower())
+        result = ["recommendation", artist_selection, list_of_suggestions]
+        return result
     return ["no_data", "No data matching your criteria."]
+
+
+def recommendation(artist):
+    albums_list = data_import()
+    genre_from_artist = ""
+    for i in range(len(albums_list)):
+        if artist.lower() == albums_list[i][0].lower():
+            genre_from_artist = albums_list[i][-2]
+    suggestions = []
+    for i in range(len(albums_list)):
+        if albums_list[i][-2].lower() == genre_from_artist.lower():
+            suggestions.append(albums_list[i])
+    random.shuffle(suggestions)
+    return suggestions[:3]
 
 
 def time_convert():
@@ -154,20 +173,18 @@ def search_by_time_range():
     result_lst = []
     display_time_input()
     time_min = input()
+    while not time_min.isdigit():
+        time_min = input()
     time_max = input()
-    try:
-        a = int(time_min)
-        b = int(time_max)
-        print(a, b)
-        for e in albums_list:
-            if (a * 60) <= e[5] <= (b * 60):
-                result_lst.append(e[:5])
-        if len(result_lst) > 0:
-            return result_lst
-
-    except ValueError:
-        search_by_time_range()
-    
+    while not time_max.isdigit():
+        time_max = input()
+    time_min = int(time_min) * 60
+    time_max = int(time_max) * 60
+    for e in albums_list:
+        if time_min <= e[5] <= time_max:
+            result_lst.append(e[:5])
+    if len(result_lst) > 0:
+        return result_lst
     return ["no_data", "No data matching your criteria."]
 
 
@@ -207,7 +224,7 @@ def set_artists():
     albums_list = data_import()
     artists = set()
     for e in albums_list:
-        artists.add(e[0].strip())
+        artists.add(e[0].strip().upper())
     return artists
 
 
@@ -215,7 +232,7 @@ def set_genres():
     albums_list = data_import()
     genres = set()
     for e in albums_list:
-        genres.add(e[-2].strip())
+        genres.add(e[-2].strip().upper())
     return genres
 
 
@@ -267,7 +284,27 @@ def show_extended_statistics():
 
 main()
 
-# print(show_extended_statistics())
+# search_by_time_range()
+
+# while not valid:
+#     try:
+#         # time_min = int(input()) * 60
+#         time_min = input()
+#         int(time_min)
+#         time_min *= 60
+#         valid = True
+#     except ValueError:
+#         time_min = input()
+#         int(time_min)
+#         time_min *= 60
+# valid = False
+# while not valid:
+#     try:
+#         time_max = int(input()) * 60
+#         valid = True
+#     except ValueError:
+#         time_max = int(input()) * 60
+
 
 # def find(what):
 #     if what == "shortest":

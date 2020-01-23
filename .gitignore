@@ -1,5 +1,5 @@
 tests.py
 test.py
 *.pyc
-__pycache__/
+__pycache__
 binary.py

@@ -11,6 +11,9 @@ rock,rock,966,pop,13:37
 Massive Attack,Blue Lines,1991,hip hop,45:02
 szubidubi, szalony bibek, 1931, techno,13:37
 pink floyd,a saurceful of secrets,1968,rock,39:25
+krzyszfot krawczyk,niki w krainie techniki,1983,pop,34:67
+pink floyd,a saurceful of secrets,1968,rock,39:25
 Kult,Muj wydafca,1994,rock,70:42
 kazik,12 groszy,1997,rapcore,77:42
-krzyszfot krawczyk,niki w krainie techniki,1983,pop,34:67
+ala,ala ma kota,1890,pop,34:45
+rychu,styl zycia gnoja,1999,hip hop,6:01

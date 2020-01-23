@@ -31,7 +31,7 @@ def update_data(file_name="text_albums_data.txt"):
     # full_album_info = [artist, album, year, genre, time]
     with open(file_name, "a+") as f:
         # f.write("\n")
-        f.write(",".join(full_album_info))
+        f.write(",".join(full_album_info) + "\n")
     main()
 
 

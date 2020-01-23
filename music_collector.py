@@ -31,23 +31,26 @@ def gather_user_info(for_what, album_to_edit=None):
     if for_what == "for_add":
         for i in range(len(lst)):
             display_add_album(lst[i])
-            info = input()
-            if i == 2:
-                while not info.isdigit():
-                    info = input()
-            if i == 4:
-                ls = info.split(":")
-                while not ls[0].isdigit() or not ls[1].isdigit() or len(ls) != 2:
-                    info = input()
-                    ls = info.split(":")
-            full_album_info.append(info)
+            full_album_info.append(validate_input(i))
         return full_album_info
     elif for_what == "for_edit":
         for i in range(len(lst)):
             display_edit_album(lst[i], album_to_edit)
-            info = input()
-            full_album_info.append(info)
+            full_album_info.append(validate_input(i))
         return full_album_info
+
+
+def validate_input(index):
+    info = input()
+    if index == 2:
+        while not info.isdigit():
+            info = input()
+    if index == 4:
+        ls = info.split(":")
+        while not ls[0].isdigit() or not ls[1].isdigit() or len(ls) != 2:
+            info = input()
+            ls = info.split(":")
+    return info
 
 
 def update_data(file_name="text_albums_data.txt"):
@@ -92,7 +95,7 @@ def back_to_menu():
     main()
 
 
-def chceck_choice_result(choice_result):
+def check_choice_result(choice_result):
     if choice_result[0] == "statistics":
         display_stats(choice_result)
     elif choice_result[0] == "no_data":
@@ -104,9 +107,8 @@ def chceck_choice_result(choice_result):
 
 
 def main():
-
     display_menu(show_statistics())
-    chceck_choice_result(menu_choice())
+    check_choice_result(menu_choice())
     back_to_menu()
 
 
@@ -160,7 +162,7 @@ def recommendation(artist):
             genre_from_artist = albums_list[i][-2]
     suggestions = []
     for i in range(len(albums_list)):
-        if albums_list[i][-2].lower() == genre_from_artist.lower() and albums_list[i][0].lower() != artist:
+        if albums_list[i][-2].lower() == genre_from_artist.lower() and albums_list[i][0].lower() != artist.lower():
             suggestions.append(albums_list[i])
     random.shuffle(suggestions)
     return suggestions[:3]

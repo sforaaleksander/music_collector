@@ -17,3 +17,5 @@ Kult,Muj wydafca,1994,rock,70:42
 kazik,12 groszy,1997,rapcore,77:42
 ala,ala ma kota,1890,pop,34:45
 rychu,styl zycia gnoja,1999,hip hop,6:01
+akcent,przekorny los,2016,disco,35:27
+wewe,wewwe,2000,pop,13:45

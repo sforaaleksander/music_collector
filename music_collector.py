@@ -32,6 +32,14 @@ def gather_user_info(for_what, album_to_edit=None):
         for i in range(len(lst)):
             display_add_album(lst[i])
             info = input()
+            if i == 2:
+                while not info.isdigit():
+                    info = input()
+            if i == 4:
+                ls = info.split(":")
+                while not ls[0].isdigit() or not ls[1].isdigit() or len(ls) != 2:
+                    info = input()
+                    ls = info.split(":")
             full_album_info.append(info)
         return full_album_info
     elif for_what == "for_edit":
@@ -152,7 +160,7 @@ def recommendation(artist):
             genre_from_artist = albums_list[i][-2]
     suggestions = []
     for i in range(len(albums_list)):
-        if albums_list[i][-2].lower() == genre_from_artist.lower():
+        if albums_list[i][-2].lower() == genre_from_artist.lower() and albums_list[i][0].lower() != artist:
             suggestions.append(albums_list[i])
     random.shuffle(suggestions)
     return suggestions[:3]

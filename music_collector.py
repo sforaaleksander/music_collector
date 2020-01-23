@@ -153,17 +153,21 @@ def search_by_time_range():
     albums_list = time_convert()
     result_lst = []
     display_time_input()
+    time_min = input()
+    time_max = input()
     try:
-        time_min = int(input()) * 60
-        time_max = int(input()) * 60
+        a = int(time_min)
+        b = int(time_max)
+        print(a, b)
         for e in albums_list:
-            if time_min <= e[5] <= time_max:
+            if (a * 60) <= e[5] <= (b * 60):
                 result_lst.append(e[:5])
+        if len(result_lst) > 0:
+            return result_lst
+
     except ValueError:
-        print("You have to enter only intiger type.")
         search_by_time_range()
-    if len(result_lst) > 0:
-        return result_lst
+    
     return ["no_data", "No data matching your criteria."]
 
 

@@ -18,3 +18,4 @@ kazik,12 groszy,1997,rapcore,77:42
 Kolo,Lolo,1999,hip hop,90:58
 rychu,styl zycia gnoja,1999,hip hop,6:01
 mobb deep,hell on earth,1996,hip hop,65:37
+Mozart,Big Hair and birds,1789,classic,78:90
